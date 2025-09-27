@@ -1,0 +1,91 @@
+---
+import '../styles/global.css';
+const { title = "Regalo para mi amor 💖" } = Astro.props;
+---
+
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{title}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  </head>
+  <body>
+
+    <header class="layout-header">
+      <a href="javascript:history.back()" class="volver-btn">Inicio</a>
+      <button id="modo-toggle">🌙 / ☀️</button>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="footer-banner">
+      Hecho con mucho cariño para mi chica mexicana 🇲🇽🖤
+    </footer>
+
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script>
+      window.addEventListener('load', () => {
+        // 🌙 Modo claro/oscuro
+        const toggle = document.getElementById('modo-toggle');
+        toggle?.addEventListener('click', () => {
+          document.body.classList.toggle('dark');
+        });
+
+        // ✨ Animaciones con ScrollReveal
+        ScrollReveal().reveal('.reveal', {
+          delay: 200,
+          distance: '40px',
+          origin: 'bottom',
+          duration: 600,
+          easing: 'ease-in-out',
+          reset: false
+        });
+
+        // 🎵 Música persistente con fade-in
+        const currentPath = window.location.pathname;
+
+        if (currentPath === '/') {
+          // Si estamos en la portada, eliminar música si existe
+          const existingAudio = document.getElementById('bgMusic');
+          if (existingAudio) {
+            existingAudio.pause();
+            existingAudio.remove();
+            localStorage.removeItem('audioStarted');
+          }
+        } else {
+          // Si no existe aún, crearla
+          if (!localStorage.getItem('audioStarted')) {
+            const audio = document.createElement('audio');
+            audio.id = 'bgMusic';
+            audio.src = '/cancion.mp3';
+            audio.loop = true;
+            audio.autoplay = true;
+            audio.volume = 0;
+            audio.style.position = 'fixed';
+            audio.style.bottom = '0';
+            audio.style.left = '0';
+            audio.style.opacity = '0';
+            audio.style.pointerEvents = 'none';
+            document.body.appendChild(audio);
+
+            // Fade-in suave
+            let volume = 0;
+            const fadeIn = setInterval(() => {
+              if (volume < 1) {
+                volume += 0.05;
+                audio.volume = Math.min(volume, 1);
+              } else {
+                clearInterval(fadeIn);
+              }
+            }, 200);
+
+            localStorage.setItem('audioStarted', 'true');
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
