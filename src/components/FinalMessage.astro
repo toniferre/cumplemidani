@@ -22,14 +22,16 @@ const destino = `${base}secreto`;
 </section>
 
 <script type="module">
-  const seguirBtn = document.getElementById('seguirBtn');
-  const destino = '/cumplemidani/secreto'; // Ruta compilada desde Astro
+  document.addEventListener('DOMContentLoaded', () => {
+    const seguirBtn = document.getElementById('seguirBtn');
+    const destino = '/cumplemidani/secreto';
 
-  seguirBtn.addEventListener('click', () => {
-    if (typeof fadeAndGo === 'function') {
-      fadeAndGo(destino);
-    } else {
-      window.location.href = destino;
-    }
+    seguirBtn.addEventListener('click', () => {
+      if (typeof fadeAndGo === 'function') {
+        fadeAndGo(destino);
+      } else {
+        window.location.href = destino;
+      }
+    });
   });
 </script>
