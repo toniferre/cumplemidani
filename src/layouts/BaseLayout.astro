@@ -32,7 +32,8 @@ const { title = "Regalo para mi amor 💖" } = Astro.props;
     </div>
 
     <script>
-      window.addEventListener('load', () => {
+      document.addEventListener('DOMContentLoaded', () => {
+        // Modo oscuro
         const toggle = document.getElementById('modo-toggle');
         const isDark = localStorage.getItem('modoOscuro') === 'true';
         if (isDark) document.body.classList.add('dark');
@@ -42,6 +43,7 @@ const { title = "Regalo para mi amor 💖" } = Astro.props;
           localStorage.setItem('modoOscuro', document.body.classList.contains('dark'));
         });
 
+        // Pétalos
         const layer = document.querySelector('.petal-layer');
         layer.innerHTML = '';
         for (let i = 0; i < 20; i++) {
@@ -54,6 +56,7 @@ const { title = "Regalo para mi amor 💖" } = Astro.props;
           layer.appendChild(petal);
         }
 
+        // Música
         const currentPath = window.location.pathname;
         const existingAudio = document.getElementById('bgMusic');
 
@@ -100,7 +103,21 @@ const { title = "Regalo para mi amor 💖" } = Astro.props;
             localStorage.setItem('audioStarted', 'true');
           }
         }
+
+        // ✅ Transición entre vistas
+        window.fadeAndGo = function (url) {
+          const page = document.querySelector('.page-transition');
+          if (page) {
+            page.classList.add('fade-out');
+            setTimeout(() => {
+              window.location.href = url;
+            }, 600);
+          } else {
+            window.location.href = url;
+          }
+        };
       });
     </script>
+
   </body>
 </html>
