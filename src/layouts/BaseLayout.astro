@@ -1,10 +1,9 @@
 ---
-// BaseLayout.astro
-import '../styles/global.css';
+/import '../styles/global.css';
 const { title = "Regalo para mi amor 💖" } = Astro.props;
 ---
 
-<html lang="es">
+<html lang="es" data-base="${import.meta.env.BASE_URL}">
   <head>
     <meta charset="UTF-8" />
     <title>{title}</title>
@@ -18,7 +17,7 @@ const { title = "Regalo para mi amor 💖" } = Astro.props;
     <div class="layout-container">
       <header class="layout-header">
         {Astro.url.pathname !== import.meta.env.BASE_URL && (
-          <a href="javascript:history.back()" class="volver-btn">Atrás</a>
+          <a href="#" onclick="goBack(event)" class="volver-btn">Atrás</a>
         )}
         <button id="modo-toggle">🌙 / ☀️</button>
       </header>
@@ -34,7 +33,9 @@ const { title = "Regalo para mi amor 💖" } = Astro.props;
 
     <script>
       document.addEventListener('DOMContentLoaded', () => {
-        // Modo oscuro
+        const base = document.documentElement.getAttribute('data-base') || '/';
+
+        // 🌙 Modo oscuro
         const toggle = document.getElementById('modo-toggle');
         const isDark = localStorage.getItem('modoOscuro') === 'true';
         if (isDark) document.body.classList.add('dark');
@@ -44,7 +45,7 @@ const { title = "Regalo para mi amor 💖" } = Astro.props;
           localStorage.setItem('modoOscuro', document.body.classList.contains('dark'));
         });
 
-        // Pétalos
+        // 🌸 Pétalos flotantes
         const layer = document.querySelector('.petal-layer');
         layer.innerHTML = '';
         for (let i = 0; i < 20; i++) {
@@ -57,8 +58,8 @@ const { title = "Regalo para mi amor 💖" } = Astro.props;
           layer.appendChild(petal);
         }
 
-        // Música
-        const currentPath = window.location.pathname.replace(import.meta.env.BASE_URL, '/');
+        // 🎵 Música de fondo
+        const currentPath = window.location.pathname.replace(base, '/');
         const existingAudio = document.getElementById('bgMusic');
 
         if (currentPath === '/' || currentPath === '/secreto') {
@@ -80,7 +81,7 @@ const { title = "Regalo para mi amor 💖" } = Astro.props;
           if (!existingAudio && !localStorage.getItem('audioStarted')) {
             const audio = document.createElement('audio');
             audio.id = 'bgMusic';
-            audio.src = '/cancion.mp3';
+            audio.src = base + 'cancion.mp3';
             audio.loop = true;
             audio.autoplay = true;
             audio.volume = 0;
@@ -105,20 +106,35 @@ const { title = "Regalo para mi amor 💖" } = Astro.props;
           }
         }
 
-        // ✅ Transición entre vistas
+        // ✨ Transición entre vistas
         window.fadeAndGo = function (url) {
           const page = document.querySelector('.page-transition');
           if (page) {
             page.classList.add('fade-out');
             setTimeout(() => {
-              window.location.href = url;
+              window.location.assign(url);
             }, 600);
           } else {
-            window.location.href = url;
+            window.location.assign(url);
           }
+        };
+
+        // 🚪 Botón atrás inteligente
+        window.goBack = (event) => {
+          event?.preventDefault?.();
+          if (document.referrer && document.referrer.includes(window.location.origin)) {
+            history.back();
+          } else {
+            window.location.assign(base);
+          }
+        };
+
+        // 🚀 Redirección limpia con base
+        window.goTo = (ruta) => {
+          const destino = base + ruta;
+          fadeAndGo(destino);
         };
       });
     </script>
-
   </body>
 </html>
