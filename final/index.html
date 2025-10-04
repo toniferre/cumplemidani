@@ -2,15 +2,17 @@
 </style></head> <body> <div class="petal-layer" aria-hidden="true"></div> <div class="layout-container"> <header class="layout-header"> <a href="javascript:history.back()" class="volver-btn">Atrás</a> <button id="modo-toggle">🌙 / ☀️</button> </header> <main>  <section class="gift-section page-transition"> <div id="finalMessage" class="secret-message"> <img src="/cumplemidani/flores.jpg" alt="Flores para ti" class="teamo-img"> <p class="fade-in">Pero hoy, es tu día</p> <p class="fade-in">Espero de corazón que disfrutes de tu vuelta al sol</p> <p class="fade-in">🌸🌸 Te mereces todo lo mejor 🌸🌸</p> <button id="seguirBtn" class="slide-button" style="margin-top:1.5rem; display:block; margin-left:auto; margin-right:auto;">
 Ahora sí, pulsa para mi regalo 🎁
 </button> </div> </section> <script type="module">
-  const seguirBtn = document.getElementById('seguirBtn');
-  const destino = '/cumplemidani/secreto'; // Ruta compilada desde Astro
+  document.addEventListener('DOMContentLoaded', () => {
+    const seguirBtn = document.getElementById('seguirBtn');
+    const destino = '/cumplemidani/secreto';
 
-  seguirBtn.addEventListener('click', () => {
-    if (typeof fadeAndGo === 'function') {
-      fadeAndGo(destino);
-    } else {
-      window.location.href = destino;
-    }
+    seguirBtn.addEventListener('click', () => {
+      if (typeof fadeAndGo === 'function') {
+        fadeAndGo(destino);
+      } else {
+        window.location.href = destino;
+      }
+    });
   });
 </script>  </main> <footer class="footer-banner">
 Hecho con mucho cariño para mi chica mexicana 🇲🇽🖤
