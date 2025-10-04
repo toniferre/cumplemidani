@@ -1,17 +1,18 @@
 ---
-// FinalMessage.astro
+const base = import.meta.env.BASE_URL;
+const destino = `${base}secreto`;
 ---
 
 <section class="gift-section page-transition">
   <div id="finalMessage" class="secret-message">
-    <img src={`${import.meta.env.BASE_URL}flores.jpg`} alt="Flores para ti" class="teamo-img" />
+    <img src={`${base}flores.jpg`} alt="Flores para ti" class="teamo-img" />
 
     <p class="fade-in">Pero hoy, es tu día</p>
     <p class="fade-in">Espero de corazón que disfrutes de tu vuelta al sol</p>
     <p class="fade-in">🌸🌸 Te mereces todo lo mejor 🌸🌸</p>
 
     <button
-      onclick="fadeAndGo(`${import.meta.env.BASE_URL}secreto`)"
+      id="seguirBtn"
       class="slide-button"
       style="margin-top:1.5rem; display:block; margin-left:auto; margin-right:auto;"
     >
@@ -19,3 +20,16 @@
     </button>
   </div>
 </section>
+
+<script type="module">
+  const seguirBtn = document.getElementById('seguirBtn');
+  const destino = '/cumplemidani/secreto'; // Ruta compilada desde Astro
+
+  seguirBtn.addEventListener('click', () => {
+    if (typeof fadeAndGo === 'function') {
+      fadeAndGo(destino);
+    } else {
+      window.location.href = destino;
+    }
+  });
+</script>
