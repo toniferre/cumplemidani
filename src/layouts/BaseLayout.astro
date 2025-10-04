@@ -16,7 +16,7 @@ const { title = "Regalo para mi amor 💖" } = Astro.props;
 
     <div class="layout-container">
       <header class="layout-header">
-        {Astro.url.pathname !== '/' && (
+        {Astro.url.pathname !== import.meta.env.BASE_URL && (
           <a href="javascript:history.back()" class="volver-btn">Atrás</a>
         )}
         <button id="modo-toggle">🌙 / ☀️</button>
