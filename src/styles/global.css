@@ -24,7 +24,7 @@ body {
 body.dark {
   background-color: var(--bg-dark);
   color: var(--text-dark);
-  background-image: url('/estrellas.gif');
+  background-image: url('${import.meta.env.BASE_URL}estrellas.gif');
   background-size: cover;
   background-repeat: repeat;
   background-attachment: fixed;

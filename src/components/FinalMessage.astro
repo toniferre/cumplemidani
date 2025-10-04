@@ -4,14 +4,14 @@
 
 <section class="gift-section page-transition">
   <div id="finalMessage" class="secret-message">
-    <img src="/flores.jpg" alt="Flores para ti" class="teamo-img" />
+    <img src={`${import.meta.env.BASE_URL}flores.jpg`} alt="Flores para ti" class="teamo-img" />
 
     <p class="fade-in">Pero hoy, es tu día</p>
     <p class="fade-in">Espero de corazón que disfrutes de tu vuelta al sol</p>
     <p class="fade-in">🌸🌸 Te mereces todo lo mejor 🌸🌸</p>
 
     <button
-      onclick="fadeAndGo('/secreto')" 
+      onclick="fadeAndGo(`${import.meta.env.BASE_URL}secreto`)"
       class="slide-button"
       style="margin-top:1.5rem; display:block; margin-left:auto; margin-right:auto;"
     >

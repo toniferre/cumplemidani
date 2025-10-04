@@ -1,5 +1,6 @@
 ---
-// ImageSlider.astro
+const base = import.meta.env.BASE_URL;
+const destino = `${base}secreto`;
 ---
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
@@ -10,19 +11,19 @@
       <div class="swiper-wrapper">
         <div class="swiper-slide slide-content">
           <h2>Exacto, siempre recordaré este día</h2>
-          <img src="/antes1.jpg" alt="Antes" />
+          <img src={`${base}antes1.jpg`} alt="Antes" />
         </div>
         <div class="swiper-slide slide-content">
           <h2>No olvidaré tampoco la primera vez que te vi</h2>
-          <img src="/despues2.jpg" alt="Después2" />
+          <img src={`${base}despues2.jpg`} alt="Después2" />
         </div>
         <div class="swiper-slide slide-content" style="text-align:center;">
           <h2>Y sobre todo, tengo en mente lo que nos espera</h2>
-          <img src="/despues1.jpg" alt="Después" />
+          <img src={`${base}despues1.jpg`} alt="Después" />
           <button
-            onclick="fadeAndGo('/secreto')"
+            id="seguirBtn"
             class="slide-button"
-            style="margin-top:1.5rem; display:block; margin-left:auto; margin-right:auto;"
+            style="margin-top:1.5rem; display:none; margin-left:auto; margin-right:auto;"
           >
             Ahora sí, pulsa para mi regalo 🎁
           </button>
@@ -34,7 +35,6 @@
     </div>
   </div>
 </section>
-
 
 <script type="module">
   import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.mjs';
@@ -48,8 +48,18 @@
     },
   });
 
-  const seguirBtn = document.querySelector('.slide-button');
+  const seguirBtn = document.getElementById('seguirBtn');
+  const destino = '/cumplemidani/secreto'; // Ruta compilada desde Astro
+
   swiper.on('slideChange', () => {
     seguirBtn.style.display = swiper.activeIndex === 2 ? 'block' : 'none';
+  });
+
+  seguirBtn.addEventListener('click', () => {
+    if (typeof fadeAndGo === 'function') {
+      fadeAndGo(destino);
+    } else {
+      window.location.href = destino;
+    }
   });
 </script>
