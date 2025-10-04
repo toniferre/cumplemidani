@@ -58,54 +58,6 @@ const { title = "Regalo para mi amor 💖" } = Astro.props;
           layer.appendChild(petal);
         }
 
-        // 🎵 Música de fondo
-        const currentPath = window.location.pathname.replace(base, '/');
-        const existingAudio = document.getElementById('bgMusic');
-
-        if (currentPath === '/' || currentPath === '/secreto') {
-          if (existingAudio) {
-            let volume = existingAudio.volume;
-            const fadeOut = setInterval(() => {
-              if (volume > 0) {
-                volume -= 0.05;
-                existingAudio.volume = Math.max(volume, 0);
-              } else {
-                clearInterval(fadeOut);
-                existingAudio.pause();
-                existingAudio.remove();
-                localStorage.removeItem('audioStarted');
-              }
-            }, 200);
-          }
-        } else {
-          if (!existingAudio && !localStorage.getItem('audioStarted')) {
-            const audio = document.createElement('audio');
-            audio.id = 'bgMusic';
-            audio.src = base + 'cancion.mp3';
-            audio.loop = true;
-            audio.autoplay = true;
-            audio.volume = 0;
-            audio.style.position = 'fixed';
-            audio.style.bottom = '0';
-            audio.style.left = '0';
-            audio.style.opacity = '0';
-            audio.style.pointerEvents = 'none';
-            document.body.appendChild(audio);
-
-            let volume = 0;
-            const fadeIn = setInterval(() => {
-              if (volume < 0.6) {
-                volume += 0.05;
-                audio.volume = Math.min(volume, 0.6);
-              } else {
-                clearInterval(fadeIn);
-              }
-            }, 200);
-
-            localStorage.setItem('audioStarted', 'true');
-          }
-        }
-
         // ✨ Transición entre vistas
         window.fadeAndGo = function (url) {
           const page = document.querySelector('.page-transition');
