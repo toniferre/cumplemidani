@@ -48,6 +48,11 @@ body.dark {
 
 .volver-btn:hover {
   color: var(--accent-hover);
+  animation: heartbeat 1s infinite;
+}
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
 }
 
 button,
@@ -226,4 +231,10 @@ input.invalid {
   .hug-img {
     max-width: 100%;
   }
+}
+
+.gift-section {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem;
 }

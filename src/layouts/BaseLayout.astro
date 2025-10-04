@@ -47,7 +47,8 @@ const { title = "Regalo para mi amor 💖" } = Astro.props;
         for (let i = 0; i < 20; i++) {
           const petal = document.createElement('div');
           petal.className = 'petal';
-          petal.textContent = '🌸';
+          const petalTypes = ['🌸', '🌺', '💮'];
+          petal.textContent = petalTypes[Math.floor(Math.random() * petalTypes.length)];
           petal.style.left = `${Math.random() * 100}vw`;
           petal.style.animationDelay = `${Math.random() * 5}s`;
           layer.appendChild(petal);
