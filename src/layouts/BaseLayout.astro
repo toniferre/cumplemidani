@@ -68,16 +68,6 @@ const { title = "Regalo para mi amor 💖" } = Astro.props;
           }
         };
 
-        // 🚪 Botón atrás inteligente
-        window.goBack = (event) => {
-          event?.preventDefault?.();
-          if (document.referrer && document.referrer.includes(window.location.origin)) {
-            history.back();
-          } else {
-            window.location.assign(base);
-          }
-        };
-
         // 🚀 Redirección limpia con base
         window.goTo = (ruta) => {
           const destino = base + ruta;
