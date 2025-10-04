@@ -1,8 +1,8 @@
 :root {
   --bg-light: #fffafc;
   --bg-dark: #1a1a1a;
-  --text-light: #ff69b4;
-  --text-dark: #ff69b4;
+  --text-light: white;
+  --text-dark: white;
   --accent: #ff69b4;
   --accent-hover: #ff85c1;
 }
@@ -68,13 +68,16 @@ button:hover,
   box-shadow: 0 0 20px rgba(255, 105, 180, 0.6);
 }
 
-input {
-  padding: 0.5em;
-  border-radius: 6px;
-  border: 1px solid #ccc;
+input[type="date"] {
+  padding: 0.6em 1em;
+  border-radius: 8px;
+  border: 2px solid #ccc;
   font-size: 1em;
-  margin-top: 0.5em;
+  margin-top: 1rem;
+  background-color: #fffafc;
   color: var(--accent);
+  box-shadow: 0 2px 6px rgba(255, 105, 180, 0.2);
+  transition: border-color 0.3s ease;
 }
 
 input.invalid {
@@ -116,7 +119,7 @@ input.invalid {
 .swiper-slide h2 {
   font-size: 1.2rem;
   margin-bottom: 1rem;
-  color: var(--accent);
+  color: white;
 }
 
 .swiper-slide img {
@@ -128,31 +131,34 @@ input.invalid {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.slide-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
+.slide-content,
+.secret-message {
+  background-color: var(--accent);
+  color: white;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(255, 105, 180, 0.3);
+  max-width: 600px;
+  margin: 2rem auto;
+  font-size: 1.1rem;
+  line-height: 1.6;
 }
 
-#seguirBtn {
-  margin-top: 1.5rem;
-  padding: 0.5rem 1.2rem;
-  font-size: 0.95rem;
-  border-radius: 6px;
-}
-
-.cat-gif {
-  max-width: 200px;
+.cat-gif,
+.hug-img,
+.teamo-img {
+  max-width: 250px;
+  width: 100%;
+  height: auto;
   margin: 1rem auto;
   display: block;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(255, 105, 180, 0.3);
 }
 
 .footer-banner {
   background-color: var(--accent);
-  color: rgb(252, 106, 174);
+  color: white;
   text-align: center;
   padding: 1rem;
   font-weight: bold;
@@ -199,9 +205,8 @@ input.invalid {
 }
 
 @media (max-width: 600px) {
-  .gift-box {
-    font-size: 2rem;
-    padding: 1.5rem;
+  h2, h3 {
+    font-size: 1rem;
   }
 
   .slide-button {
@@ -218,36 +223,3 @@ input.invalid {
     max-width: 100%;
   }
 }
-
-.secret-message {
-  margin-top: 2rem;
-  opacity: 0;
-  transform: scale(0.8);
-  transition: opacity 1s ease, transform 0.5s ease;
-  background-color: #ffe4f0;
-  border-radius: 1rem;
-  padding: 1.5rem;
-  box-sizing: border-box;
-  box-shadow: 0 4px 12px rgba(255, 105, 180, 0.2);
-  max-width: 600px;
-  margin: 2rem auto;
-  font-size: 1.1rem;
-  line-height: 1.6;
-  color: var(--accent);
-}
-
-.secret-message.visible {
-  opacity: 1;
-  transform: scale(1);
-}
-
-.hug-img {
-  display: block;
-  width: 100%;
-  max-width: 250px;
-  height: auto;
-  margin: 1rem auto;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(255, 105, 180, 0.3);
-}
-

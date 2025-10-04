@@ -8,20 +8,24 @@
   <div class="swiper-container">
     <div class="swiper">
       <div class="swiper-wrapper">
-        <div class="swiper-slide">
+        <div class="swiper-slide slide-content" style="background-color:#ffc1e3;">
           <h2>Exacto, siempre recordaré este día</h2>
           <img src="/antes1.jpg" alt="Antes" />
         </div>
-        <div class="swiper-slide">
+        <div class="swiper-slide slide-content" style="background-color:#ffc1e3;">
           <h2>No olvidaré tampoco la primera vez que te vi</h2>
           <img src="/despues2.jpg" alt="Después2" />
         </div>
-        <div class="swiper-slide">
-          <div class="slide-content">
-            <h2>Y sobre todo, tengo en mente lo que nos espera</h2>
-            <img src="/despues1.jpg" alt="Después" />
-            <button onclick="window.location.href='/final'" class="slide-button animate__animated animate__bounceIn">Pulsa para avanzar solete 🌸</button>
-          </div>
+        <div class="swiper-slide slide-content" style="background-color:#ffc1e3; text-align:center;">
+          <h2>Y sobre todo, tengo en mente lo que nos espera</h2>
+          <img src="/despues1.jpg" alt="Después" />
+          <button
+            onclick="window.location.href='/final'"
+            class="slide-button animate__animated animate__bounceIn"
+            style="background-color:white; color:#ff69b4; margin:1.5rem auto; display:block;"
+          >
+            Pulsa para avanzar solete 🌸
+          </button>
         </div>
       </div>
       <div class="swiper-pagination"></div>
@@ -31,33 +35,20 @@
   </div>
 </section>
 
-
 <script type="module">
   import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.mjs';
 
-const swiper = new Swiper('.swiper', {
-  loop: false,
-  pagination: { el: '.swiper-pagination' },
-  navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev',
-  },
-});
+  const swiper = new Swiper('.swiper', {
+    loop: false,
+    pagination: { el: '.swiper-pagination' },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+  });
 
-const seguirBtn = document.querySelector('.slide-button');
-
-swiper.on('slideChange', () => {
-  seguirBtn.style.display = swiper.activeIndex === 2 ? 'block' : 'none';
-});
-
-// 🌸 Pétalos flotando
-for (let i = 0; i < 20; i++) {
-  const petal = document.createElement('div');
-  petal.className = 'petal';
-  petal.textContent = '🌸';
-  petal.style.left = `${Math.random() * 100}vw`;
-  petal.style.animationDelay = `${Math.random() * 5}s`;
-  document.body.appendChild(petal);
-}
-
+  const seguirBtn = document.querySelector('.slide-button');
+  swiper.on('slideChange', () => {
+    seguirBtn.style.display = swiper.activeIndex === 2 ? 'block' : 'none';
+  });
 </script>
